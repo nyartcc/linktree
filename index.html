@@ -54,22 +54,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        window.onload = function() {
-            fetch('http://localhost:5000/links')
-                .then(response => response.json())
-                .then(data => {
-                    let linksDiv = document.getElementById('links');
-                    for (let link of data) {
-                        let btn = document.createElement('a');
-                        btn.href = link.url;
-                        btn.textContent = link.display_text;
-                        btn.className = 'btn btn-primary btn-block link-button';
-                        linksDiv.appendChild(btn);
-                    }
-                });
-        };
-    </script>
 </body>
 </html>
