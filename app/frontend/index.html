@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Links</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 2em;
+            /* Use an image as background */
+            background-image: url("img/blue-background.jpg");
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            background: #fff;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+        }
+
+        .link-button {
+            margin-bottom: 15px;
+            width: 100%;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="logo">
+                    <img src="https://zny-uploads.s3.amazonaws.com/icons/ZNY%20Logo%20Circularpng.png"
+                    width="200" alt="NYARTCC Logo" />
+                </div>
+                <div id="links">
+                    <a class="btn btn-primary btn-block link-button" href="https://nyartcc.org">NYARTCC Website</a>
+                    <a class="btn btn-primary btn-block link-button" href="https://facebook.com/nyartcc">Facebook</a>
+                    <a class="btn btn-primary btn-block link-button" href="https://instagram.com/nyartcc">Instagram</a>
+                    <a class="btn btn-primary btn-block link-button" href="https://tiktok.com/nyartcc">TikTok</a>
+                    <a class="btn btn-primary btn-block link-button" href="https://youtube.com/nyartcc">YouTube</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            fetch('http://localhost:5000/links')
+                .then(response => response.json())
+                .then(data => {
+                    let linksDiv = document.getElementById('links');
+                    for (let link of data) {
+                        let btn = document.createElement('a');
+                        btn.href = link.url;
+                        btn.textContent = link.display_text;
+                        btn.className = 'btn btn-primary btn-block link-button';
+                        linksDiv.appendChild(btn);
+                    }
+                });
+        };
+    </script>
+</body>
+</html>
